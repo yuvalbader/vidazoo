@@ -1,0 +1,6 @@
+OWNERDOMAIN=example.com
+
+# yuval
+test1.com, 5125215, DIRECT, fafdf38b16bf6b2b
+test2.com, 512521, DIRECT, fafdf38b16bf6b2b
+test2.com, 5125213, DIRECT, fafdf38b16bf6b2b

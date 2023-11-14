@@ -1,0 +1,7 @@
+version: 2
+build:
+  docker:
+    client: ./client/Dockerfile
+    server: ./server/Dockerfile
+  config:
+    SERVER_DEPENDS_ON: redis
