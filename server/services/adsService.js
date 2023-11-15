@@ -9,10 +9,9 @@ class AdsService {
     try {
       const cachedData = await this.cache.get(domain);
 
-      if (cachedData !== null) {
+      if (cachedData !== null && cachedData !== undefined) {
         console.log(`Serving ${domain} from Cache`);
-        const { parseTime, ...cachedWithoutTime } = cachedData;
-        return { ...cachedWithoutTime, fromCache: true, parseTime: null };
+        return { ...cachedData, fromCache: true };
       }
 
       console.log(`Serving ${domain} from API`);
@@ -25,7 +24,7 @@ class AdsService {
       const parseTime = endTime - startTime;
 
       await this.cache.set(domain, { ...result, parseTime }, this.redisTTL);
-      return { ...result, fromCache: false, time: parseTime };
+      return { ...result, fromCache: false, parseTime };
     } catch (error) {
       console.error(error);
       throw error;

@@ -9,6 +9,7 @@ const DataSummary = ({
   adsCount,
   fromCache,
   parseTime,
+  parseErrors,
 }) => (
   <Typography
     variant="subtitle1"
@@ -34,12 +35,10 @@ const DataSummary = ({
       </Grid>
       <Grid item>
         Parse Time:
-        <strong>
-          {fromCache ? "From Cache" : parseTime && `${parseTime}ms`}
-        </strong>
+        <strong>{fromCache ? "From Cache" : parseTime + "ms"}</strong>
       </Grid>
       <Grid item>
-        Parse Errors:<strong> {0}</strong>
+        Parse Errors:<strong> {parseErrors}</strong>
       </Grid>
     </Grid>
   </Typography>

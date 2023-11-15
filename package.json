@@ -1,0 +1,17 @@
+{
+  "name": "vidazoo-home-assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "cd client && npm install --legacy-peer-deps && npm run build && cd .. && npm run build-server",
+    "build-server": "tsc",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
+}

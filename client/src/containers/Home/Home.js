@@ -23,6 +23,7 @@ function Home() {
   const [adsCount, setAdsCount] = useState(0);
   const [advertiserCount, setAdvertiserCount] = useState(0);
   const [parseTime, setParseTime] = useState(null);
+  const [parseErrors, setParseErrors] = useState(null);
   const [fromCache, setFromCache] = useState(false);
   const [error, setError] = useState(null);
 
@@ -32,11 +33,13 @@ function Home() {
       setError(null); // Clear any previous errors
 
       const data = await getAds(domainInput);
+      console.log(data);
       setAdvertisers(data.advertisers);
       setDomain(data.domain);
-      setParseTime(data.time);
+      setParseTime(data.parseTime);
       setFromCache(data.fromCache);
       setAdsCount(data.totalAds);
+      setParseErrors(data.parseErrors);
       setAdvertiserCount(data.totalAdvertisers);
     } catch (error) {
       setError(error);
@@ -77,6 +80,7 @@ function Home() {
                     adsCount={adsCount}
                     fromCache={fromCache}
                     parseTime={parseTime}
+                    parseErrors={parseErrors}
                   />
 
                   <AdvertisersTable

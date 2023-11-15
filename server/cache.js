@@ -1,11 +1,23 @@
-// cache.js
-const redis = require("async-redis");
-const redisHost = process.env.REDIS_HOST || "127.0.0.1";
+const redis = require("redis");
+const util = require("util");
+const redisUrl = process.env.REDIS_URL || "redis://redis:6379";
+
 const redisClient = redis.createClient({
-  url: "redis://redis:6379",
+  url: redisUrl,
   legacyMode: true,
 });
-// Handle Redis client errors
+
+const getAsync = util.promisify(redisClient.get).bind(redisClient);
+const setexAsync = util.promisify(redisClient.setex).bind(redisClient);
+
+(async () => {
+  redisClient.connect();
+})();
+
+redisClient.on("connect", () => {
+  console.log("Redis connected");
+});
+
 redisClient.on("error", (err) => {
   console.error("Redis Error:", err);
 });
@@ -13,17 +25,16 @@ redisClient.on("error", (err) => {
 class CacheService {
   async get(key) {
     try {
-      const cachedData = await redisClient.get(key);
+      const cachedData = await getAsync(key);
       return cachedData ? JSON.parse(cachedData) : null;
     } catch (error) {
-      console.error("Error reading from cache:", error);
       return null;
     }
   }
 
   async set(key, data, ttlInSeconds) {
     try {
-      await redisClient.setex(key, ttlInSeconds, JSON.stringify(data));
+      await setexAsync(key, ttlInSeconds, JSON.stringify(data));
     } catch (error) {
       console.error("Error writing to cache:", error);
     }
