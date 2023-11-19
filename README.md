@@ -1,12 +1,42 @@
+# Update from 18/11
+
+As part of my drawing conclusions, I made a small patch to the Dockerize process and now it works.
+in order to run the project please follow the instructions below:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yuvalbader/Vidazoo
+   ```
+
+2. **Go to root folder:**
+
+   ```bash
+   cd Vidazoo
+   ```
+
+3. **Run the docker-compose:**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Open browser:**
+
+   www.localhost:3000
+
 # Ads.txt Parser Web App
+
+Unfortunately, at the end of the work as part of the deployment process, critical things has changed.
+I wanted to do the deployment using heroku container registry and that's also why I dockerized the application.
+Unfortunately it doesn't work, and my configurations have changed and affected
+critical to redis, so I did not complete the deploy and redis cache will not serve the data.
 
 ## Overview
 
 This project is a solution to the Junior Developer Home Assignment, aiming to build a web app that retrieves and displays information from the 'ads.txt' file of a given domain. The server-side handles scraping and parsing of the 'ads.txt' file, while the UI, built using React with JSX, presents the results in a table format.
 
 ## How to Use
-
- 
 
 1. **Clone the repository:**
 

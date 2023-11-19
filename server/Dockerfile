@@ -2,7 +2,7 @@
 FROM node:14-alpine
 
 # Set the working directory
-WORKDIR /usr/src/app/client
+WORKDIR /usr/src/app/server
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the React app
-RUN npm run build
+# Expose the port your app will run on
+EXPOSE 3001
 
-# Set the command to run your production-ready React app
+# Set the command to run your Node.js server
 CMD ["npm", "start"]

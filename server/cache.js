@@ -7,12 +7,14 @@ const redisClient = redis.createClient({
   legacyMode: true,
 });
 
+redisClient.connect();
+
 const getAsync = util.promisify(redisClient.get).bind(redisClient);
 const setexAsync = util.promisify(redisClient.setex).bind(redisClient);
 
-(async () => {
-  redisClient.connect();
-})();
+redisClient.on("ready", () => {
+  console.log("Redis client is ready");
+});
 
 redisClient.on("connect", () => {
   console.log("Redis connected");
