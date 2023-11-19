@@ -2,6 +2,5 @@ node_modules/
 package-lock.json
 build/
 dist/
-.env
 client/node_modules
 .eslintcache
