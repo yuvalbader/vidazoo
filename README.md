@@ -6,13 +6,13 @@ in order to run the project please follow the instructions below:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yuvalbader/Vidazoo-hw
+   git clone https://github.com/yuvalbader/Vidazoo
    ```
 
 2. **Go to root folder:**
 
    ```bash
-   cd Vidazoo-hw
+   cd Vidazoo
    ```
 
 3. **Run the docker-compose:**
